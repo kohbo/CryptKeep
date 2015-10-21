@@ -11,5 +11,6 @@ public class CEN_GUI {
         builder.setLocationRelativeTo(null);
         builder.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         builder.setVisible(true);
+        //steve smells
     }
 }
