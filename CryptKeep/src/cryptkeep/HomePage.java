@@ -247,11 +247,20 @@ public class HomePage extends javax.swing.JFrame {
         
         if (userName.matches("steve") && getPassWord == 1234) {
             System.out.println(userName + "" + passWord);
-            welcomeA levelA = new welcomeA();
-            levelA.pack();
-            levelA.setLocationRelativeTo(null);
-            levelA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            levelA.setVisible(true);
+            welcomeA welcomeA = new welcomeA();
+            welcomeA.pack();
+            welcomeA.setLocationRelativeTo(null);
+            welcomeA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            welcomeA.setVisible(true);
+            music();
+        }
+        else if (userName.matches("juan") && getPassWord == 4321) {
+            System.out.println(userName + "" + passWord);
+            WelcomeB welcomeB = new WelcomeB();
+            welcomeB.pack();
+            welcomeB.setLocationRelativeTo(null);
+            welcomeB.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            welcomeB.setVisible(true);
             music();
         }
         else {

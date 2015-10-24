@@ -6,15 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-
-public class welcomeA extends javax.swing.JFrame implements ActionListener{
+public class WelcomeB extends javax.swing.JFrame implements ActionListener{
     
     private Timer timer = null;
-    private final int TIME  = 4000;
+    private final int TIME = 4000;
     /**
-     * Creates new form welcomeA
+     * Creates new form WelcomeB
      */
-    public welcomeA() {
+    public WelcomeB() {
         initComponents();
         timer = new Timer(TIME, this);
         timer.start();
@@ -41,36 +40,35 @@ public class welcomeA extends javax.swing.JFrame implements ActionListener{
         jLabel2.setText("ACCESS GRANTED");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel3.setText("Welcome To Level A");
+        jLabel3.setText("Welcome To Level B");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(jLabel3)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(53, 53, 53))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel2)
-                .addGap(29, 29, 29)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel3)
-                .addGap(30, 30, 30))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,31 +91,32 @@ public class welcomeA extends javax.swing.JFrame implements ActionListener{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(welcomeA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(welcomeA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(welcomeA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(welcomeA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new welcomeA().setVisible(true);
+                new WelcomeB().setVisible(true);
             }
         });
     }
-        @Override
+    
+    @Override
     public void actionPerformed(ActionEvent e) {
-            AccessLevelA levelA = new AccessLevelA();
-            levelA.pack();
-            levelA.setLocationRelativeTo(null);
-            levelA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            levelA.setVisible(true);
-            timer.stop();
+        AccessLevelB levelB = new AccessLevelB();
+        levelB.pack();
+        levelB.setLocationRelativeTo(null);
+        levelB.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        levelB.setVisible(true);
+        timer.stop();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
