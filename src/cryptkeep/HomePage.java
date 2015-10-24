@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 public class HomePage extends javax.swing.JFrame {
 
@@ -21,6 +22,7 @@ public class HomePage extends javax.swing.JFrame {
     
     public HomePage() {
         initComponents();
+        this.setIconImage(new ImageIcon("../res/shield.png").getImage());
     }
 
     /**
@@ -40,7 +42,6 @@ public class HomePage extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         fieldPass = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
         imgLogo = new javax.swing.JLabel();
         btnAboutUs = new javax.swing.JButton();
         btnResetPass = new javax.swing.JButton();
@@ -60,6 +61,9 @@ public class HomePage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome to CryptKeep!! Please Log In");
+        setIconImage(getIconImage());
+        setName("HomePageFrame"); // NOI18N
+        setResizable(false);
 
         loginPanel.setMinimumSize(new java.awt.Dimension(800, 500));
         loginPanel.setName(""); // NOI18N
@@ -88,19 +92,8 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 707, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         imgLogo.setBackground(new java.awt.Color(255, 255, 255));
-        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cryptkeep/CryptKeep.jpg"))); // NOI18N
+        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/CryptKeep.jpg"))); // NOI18N
         imgLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnAboutUs.setText("About Us");
@@ -112,7 +105,6 @@ public class HomePage extends javax.swing.JFrame {
 
         btnResetPass.setText("Reset Pass");
         btnResetPass.setToolTipText("");
-        btnResetPass.setActionCommand("Reset Pass");
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
@@ -123,24 +115,20 @@ public class HomePage extends javax.swing.JFrame {
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addComponent(btnResetPass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(fieldPass, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addComponent(btnResetPass)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAboutUs))
-                            .addComponent(fieldUserName))
-                        .addGap(52, 52, 52)
-                        .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAboutUs)
+                        .addGap(4, 4, 4))
+                    .addComponent(fieldUserName)
+                    .addComponent(fieldPass))
+                .addGap(40, 40, 40)
+                .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loginPanelLayout.setVerticalGroup(
@@ -164,18 +152,16 @@ public class HomePage extends javax.swing.JFrame {
                     .addGroup(loginPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 645, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,7 +169,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -198,11 +184,13 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldPassActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        userName = fieldUserName.getText();
-        passWord = fieldPass.getText();
-        getPassWord = Integer.parseInt(passWord);
-        
-        if (userName.matches("steve") && getPassWord == 1234) {
+
+        try{
+            userName = fieldUserName.getText();
+            passWord = fieldPass.getText();
+            getPassWord = Integer.parseInt(passWord);
+            
+            if (userName.matches("steve") && getPassWord == 1234) {
             System.out.println(userName + "" + passWord);
             welcomeA welcomeA = new welcomeA();
             welcomeA.pack();
@@ -210,19 +198,25 @@ public class HomePage extends javax.swing.JFrame {
             welcomeA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             welcomeA.setVisible(true);
             music();
+            }
+            else if (userName.matches("juan") && getPassWord == 4321) {
+                System.out.println(userName + "" + passWord);
+                WelcomeB welcomeB = new WelcomeB();
+                welcomeB.pack();
+                welcomeB.setLocationRelativeTo(null);
+                welcomeB.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                welcomeB.setVisible(true);
+                music();
+            }
+            else {
+                WrongPassword wrongPassword = new WrongPassword();
+                wrongPassword.pack();
+                wrongPassword.setLocationRelativeTo(null);
+                wrongPassword.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                wrongPassword.setVisible(true);
+            }
         }
-        else if (userName.matches("juan") && getPassWord == 4321) {
-            System.out.println(userName + "" + passWord);
-            WelcomeB welcomeB = new WelcomeB();
-            welcomeB.pack();
-            welcomeB.setLocationRelativeTo(null);
-            welcomeB.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            welcomeB.setVisible(true);
-            music();
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Wrong, try again", "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
+        catch(NumberFormatException exc){
             WrongPassword wrongPassword = new WrongPassword();
             wrongPassword.pack();
             wrongPassword.setLocationRelativeTo(null);
@@ -283,7 +277,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JPanel loginPanel;
