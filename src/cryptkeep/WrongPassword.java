@@ -28,7 +28,7 @@ public class WrongPassword extends javax.swing.JFrame {
 
         lblWrongPass = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblWrongPass.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblWrongPass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

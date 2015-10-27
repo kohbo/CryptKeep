@@ -9,12 +9,12 @@ package cryptkeep;
  *
  * @author kohbo
  */
-public class Excryptor extends javax.swing.JPanel {
+public class Encryptor extends javax.swing.JPanel {
 
     /**
      * Creates new form Excryptor
      */
-    public Excryptor() {
+    public Encryptor() {
         initComponents();
     }
 

@@ -40,11 +40,11 @@ public class HomePage extends javax.swing.JFrame {
         lblUserName = new javax.swing.JLabel();
         fieldUserName = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        fieldPass = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
         imgLogo = new javax.swing.JLabel();
         btnAboutUs = new javax.swing.JButton();
         btnResetPass = new javax.swing.JButton();
+        fieldPass = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,9 +65,7 @@ public class HomePage extends javax.swing.JFrame {
         setName("HomePageFrame"); // NOI18N
         setResizable(false);
 
-        loginPanel.setMinimumSize(new java.awt.Dimension(800, 500));
         loginPanel.setName(""); // NOI18N
-        loginPanel.setPreferredSize(new java.awt.Dimension(800, 500));
 
         lblUserName.setText("Enter User Name");
 
@@ -77,15 +75,9 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        lblPassword.setText("Enter Password");
+        lblPassword.setText("Enter Pin");
 
-        fieldPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldPassActionPerformed(evt);
-            }
-        });
-
-        btnSubmit.setText("Submit");
+        btnSubmit.setText("Login");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -118,18 +110,20 @@ public class HomePage extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addComponent(btnResetPass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAboutUs)
-                        .addGap(4, 4, 4))
-                    .addComponent(fieldUserName)
-                    .addComponent(fieldPass))
-                .addGap(40, 40, 40)
+                        .addComponent(btnAboutUs))
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldPass, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(fieldUserName))))
+                .addGap(42, 42, 42)
                 .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         loginPanelLayout.setVerticalGroup(
             loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +155,7 @@ public class HomePage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 645, Short.MAX_VALUE)
+                .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -175,13 +169,14 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldUserNameActionPerformed
-        
-    }//GEN-LAST:event_fieldUserNameActionPerformed
-
-    private void fieldPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPassActionPerformed
-        
-    }//GEN-LAST:event_fieldPassActionPerformed
+    private void btnAboutUsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutUsMouseClicked
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI("http://kohding.net/CryptKeep"));
+        } catch (IOException|URISyntaxException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAboutUsMouseClicked
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
 
@@ -189,15 +184,15 @@ public class HomePage extends javax.swing.JFrame {
             userName = fieldUserName.getText();
             passWord = fieldPass.getText();
             getPassWord = Integer.parseInt(passWord);
-            
+
             if (userName.matches("steve") && getPassWord == 1234) {
-            System.out.println(userName + "" + passWord);
-            welcomeA welcomeA = new welcomeA();
-            welcomeA.pack();
-            welcomeA.setLocationRelativeTo(null);
-            welcomeA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            welcomeA.setVisible(true);
-            music();
+                System.out.println(userName + "" + passWord);
+                welcomeA welcomeA = new welcomeA();
+                welcomeA.pack();
+                welcomeA.setLocationRelativeTo(null);
+                welcomeA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                welcomeA.setVisible(true);
+                music();
             }
             else if (userName.matches("juan") && getPassWord == 4321) {
                 System.out.println(userName + "" + passWord);
@@ -225,14 +220,9 @@ public class HomePage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void btnAboutUsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutUsMouseClicked
-        try {
-            // TODO add your handling code here:
-            Desktop.getDesktop().browse(new URI("http://kohding.net/CryptKeep"));
-        } catch (IOException|URISyntaxException ex) {
-            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnAboutUsMouseClicked
+    private void fieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldUserNameActionPerformed
+
+    }//GEN-LAST:event_fieldUserNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,7 +262,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnAboutUs;
     private javax.swing.JButton btnResetPass;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JTextField fieldPass;
+    private javax.swing.JPasswordField fieldPass;
     private javax.swing.JTextField fieldUserName;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel jLabel3;
