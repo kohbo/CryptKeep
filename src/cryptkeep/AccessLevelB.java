@@ -90,15 +90,11 @@ public class AccessLevelB extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEcryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEcryptActionPerformed
-        // TODO add your handling code here:
         Encryptor encryptor = new Encryptor();
     }//GEN-LAST:event_btnEcryptActionPerformed
 
     private void btnSendFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendFileActionPerformed
-        // TODO add your handling code here:
-        PeerToPeer p2p = new PeerToPeer(fileChooser.getSelectedFile());
-        p2p.setLocationRelativeTo(null);
-        p2p.setVisible(true);
+        PeerToPeer p2p = new PeerToPeer();
     }//GEN-LAST:event_btnSendFileActionPerformed
 
     /**
