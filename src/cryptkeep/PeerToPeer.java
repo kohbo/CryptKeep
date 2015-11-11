@@ -5,7 +5,19 @@
  */
 package cryptkeep;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,15 +25,16 @@ import javax.swing.JOptionPane;
  * @author kohbo
  */
 public class PeerToPeer extends javax.swing.JFrame {
-    File selectedFile;
+    private final int SOCKET_PORT = 5000;
 
     /**
      * Creates new form PeerToPeer
      * @param selectedFile
      */
-    public PeerToPeer(File selectedFile) {
-        this.selectedFile = selectedFile;
+    public PeerToPeer() {
         initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**
@@ -50,6 +63,11 @@ public class PeerToPeer extends javax.swing.JFrame {
         });
 
         btnReceiveFile.setText("Receive File");
+        btnReceiveFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReceiveFileActionPerformed(evt);
+            }
+        });
 
         txtStatus.setBackground(new java.awt.Color(0, 0, 0));
         txtStatus.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,24 +116,128 @@ public class PeerToPeer extends javax.swing.JFrame {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
-        String address = JOptionPane.showInputDialog("Enter the destination IP address");
-        addToLog("Establishing connection to " + address);
+        addToLog("Starting file sending procedure...");
         try {
-            Thread.sleep(4000);
-        } catch (InterruptedException ex) {
-            addToLog("Connection interrupted.");
+            sendFile();
+        } catch (IOException e) {
+            addToLog("Exception Occured: " + e.getMessage());
         }
-        if(!"192.168.1".equals(address)){
-            addToLog("Connection established with " + address);
-            addToLog("Preparing to send file: " + selectedFile.getName());
-        } 
-        else{
-            addToLog("Unable to establish connection with " + address);
-        }    
     }//GEN-LAST:event_btnSendActionPerformed
 
+    private void btnReceiveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceiveFileActionPerformed
+        addToLog("Starting file receiving procedure...");
+        try {
+            ReceiveFile();
+        } catch (IOException e) {
+            addToLog("Exception Occured: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnReceiveFileActionPerformed
+
     private void addToLog(String text){
+        System.out.println(text);
         txtStatus.setText(txtStatus.getText() + text + "\n");
+    }
+    
+    protected void sendFile() throws IOException{
+        FileInputStream fis = null;
+        BufferedInputStream bis = null;
+        OutputStream os = null;
+        ServerSocket servsock = null;
+        Socket sock = null;
+        try {
+            JFileChooser jfc = new JFileChooser();
+            File selectedFile = null;
+                    
+            if(jfc.showDialog(btnSend, null) == JFileChooser.APPROVE_OPTION){
+                selectedFile = jfc.getSelectedFile();
+            } else {
+                throw new IOException("A file must be chosen to send.");
+            }
+            
+            servsock = new ServerSocket(SOCKET_PORT);
+            if(servsock.isBound()){
+                addToLog("Socked successfully bound to port.");
+            }
+            while (true) {
+                addToLog("Waiting for connection...");
+                try {
+                  sock = servsock.accept();
+                  addToLog("Connection establish with " + sock.getInetAddress());
+                  // send file
+                  byte [] mybytearray  = new byte [(int)selectedFile.length()];
+                  fis = new FileInputStream(selectedFile);
+                  bis = new BufferedInputStream(fis);
+                  bis.read(mybytearray,0,mybytearray.length);
+                  os = sock.getOutputStream();
+                  addToLog("Sending " + selectedFile.getName() + "(" + mybytearray.length + " bytes)");
+                  os.write(mybytearray,0,mybytearray.length);
+                  os.flush();
+                  addToLog("Done.");
+                }
+                catch(Exception e){
+                    addToLog("Exception Occured: " + e.getMessage());
+                }
+                finally {
+                  if (bis != null) bis.close();
+                  if (os != null) os.close();
+                  if (sock!=null) sock.close();
+                }
+            }
+        }
+        catch(IOException e){
+            addToLog("Exception Occured: " + e.getMessage());
+        }
+        finally{
+            if (servsock != null) servsock.close();
+        }
+    }
+    
+    private void ReceiveFile() throws IOException{
+        String address = JOptionPane.showInputDialog("Enter server IP address");
+        
+        int bytesRead;
+        int current = 0;
+        JFileChooser jfc = new JFileChooser();
+        File fileDestination;
+        FileOutputStream fos = null;
+        BufferedOutputStream bos = null;
+        Socket sock = null;
+        try {
+            sock = new Socket(address, SOCKET_PORT);
+            addToLog("Establishing connection to " + address);
+
+            // receive file
+            byte [] mybytearray  = new byte [60000000]; //up to 60 MB file
+            InputStream is = sock.getInputStream();
+            if(jfc.showSaveDialog(btnSend) == JFileChooser.APPROVE_OPTION){
+                fileDestination = jfc.getSelectedFile();
+            } else {
+                throw new IOException("File destination must be chosen.");
+            }
+            fos = new FileOutputStream(fileDestination);
+            bos = new BufferedOutputStream(fos);
+            bytesRead = is.read(mybytearray,0,mybytearray.length);
+            current = bytesRead;
+
+            do {
+               bytesRead =
+                  is.read(mybytearray, current, (mybytearray.length-current));
+               if(bytesRead >= 0) current += bytesRead;
+            } while(bytesRead > -1);
+
+            bos.write(mybytearray, 0 , current);
+            bos.flush();
+            System.out.println("File " + fileDestination.getName()
+                + " downloaded (" + current + " bytes read)");
+        }
+        catch(Exception e){
+            addToLog("Exception Occured: " + e.getMessage());
+        }
+        finally {
+          if (fos != null) fos.close();
+          if (bos != null) bos.close();
+          if (sock != null) sock.close();
+        }
     }
     /**
      * @param args the command line arguments
