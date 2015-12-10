@@ -38,7 +38,6 @@ public class PeerToPeerTest {
 
     @Test
     public void testMenu() {
-        // TODO review the generated test code and remove the default call to fail.
         PeerToPeer p2p = new PeerToPeer();
     }
     
