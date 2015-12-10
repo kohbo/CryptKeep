@@ -171,7 +171,6 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnAboutUsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutUsMouseClicked
         try {
-            // TODO add your handling code here:
             Desktop.getDesktop().browse(new URI("http://kohding.net/CryptKeep"));
         } catch (IOException|URISyntaxException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
