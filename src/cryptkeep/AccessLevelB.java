@@ -4,9 +4,11 @@
  */
 package cryptkeep;
 
+import java.security.GeneralSecurityException;
+
 /**
  *
- * @author workinggirl
+ * @author Steve-o
  */
 public class AccessLevelB extends javax.swing.JFrame {
 
@@ -30,7 +32,6 @@ public class AccessLevelB extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnEcrypt = new javax.swing.JButton();
         btnSendFile = new javax.swing.JButton();
-        fileChooser = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,9 +53,6 @@ public class AccessLevelB extends javax.swing.JFrame {
             }
         });
 
-        fileChooser.setApproveButtonText("Select");
-        fileChooser.setApproveButtonToolTipText("");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,14 +60,9 @@ public class AccessLevelB extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEcrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSendFile, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(fileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(btnEcrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(btnSendFile, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -81,8 +74,6 @@ public class AccessLevelB extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEcrypt)
                     .addComponent(btnSendFile))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -90,7 +81,11 @@ public class AccessLevelB extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEcryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEcryptActionPerformed
-        Encryptor encryptor = new Encryptor();
+        try{
+            Encryptor encryptor = new Encryptor();
+        } catch (GeneralSecurityException e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnEcryptActionPerformed
 
     private void btnSendFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendFileActionPerformed
@@ -134,7 +129,6 @@ public class AccessLevelB extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEcrypt;
     private javax.swing.JButton btnSendFile;
-    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
